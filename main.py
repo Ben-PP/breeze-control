@@ -6,7 +6,7 @@ from mqtt import MQTTClient
 from config import *
 from breezer import Breezer
 
-SW_VERSION = "1.2.0"
+SW_VERSION = "1.2.1"
 HW_VERSION = "1.0"
 
 # These will be same across multiple devices
@@ -98,7 +98,7 @@ def discover_mode_select(client: MQTTClient, device_data):
         "retain": True,
         "command_topic": MODE_COMMAND,
         "options": [
-            "Turn off",
+            "Off",
             "Auto",
             "Slow",
             "Medium",
@@ -177,7 +177,7 @@ def main():
                 if breezer.get_mode() == "Off":
                     breezer.power_btn()
 
-            if msg == b"Turn off":
+            if msg == b"Off":
                 if breezer.get_mode() == "Off":
                     return
                 breezer.power_btn()
